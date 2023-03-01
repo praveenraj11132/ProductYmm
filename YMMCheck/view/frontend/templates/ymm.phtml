@@ -1,0 +1,18 @@
+<form action="<?php echo $block->getUrl('catalogsearch/result'); ?>" method="get">
+    <input type="text" name="q" placeholder="Search products..." />
+    <button type="submit">Search</button>
+</form>
+
+<?php if ($block->getProductCollection()): ?>
+    <?php foreach ($block->getProductCollection() as $_product): ?>
+        <div class="product-item">
+            <a href="<?php echo $block->escapeUrl($_product->getProductUrl()) ?>">
+                <?php if ($_product->getImage()): ?>
+                <img src="<?php echo $block->escapeUrl($_product->getImageUrl());?>" width="150px" height="150px" alt="<?php echo $block->escapeHtml($_product->getName()) ?>">
+                <?php endif; ?>
+                <h4><?php echo $block->escapeHtml($_product->getName()) ?></h4>
+            </a>
+            <span class="price"><?php echo $_product->getPriceInfo()->getPrice('final_price')->getValue() ?></span>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>

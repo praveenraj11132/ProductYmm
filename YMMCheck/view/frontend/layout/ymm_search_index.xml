@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_category_view_type_layered"/>
+    <body>
+        <attribute name="class" value="page-products"/>
+        <attribute name="class" value="catalog-category-view"/>
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="id" xsi:type="string">page-title-heading</argument>
+                <argument name="add_base_attribute_aria" xsi:type="string">page-title-heading toolbar-amount</argument>
+            </arguments>
+            <block class="Wheelpros\YMMCheck\Block\Product\ProductCount" name="page.main.title.amount"
+                   template="Magento_Catalog::product/list/toolbar/title-amount.phtml" />
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Wheelpros\YMMCheck\Block\Ymms\View" name="category.products" template="Wheelpros_YMMCheck::ymms/products.phtml">
+                <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="ymm_product_list" template="Magento_Catalog::product/list.phtml">
+                    <arguments>
+                        <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                        <argument name="statusModel" xsi:type="object">Wheelpros\YMMCheck\ViewModel\NewTabStatus</argument>
+                    </arguments>
+                    <container name="category.product.list.additional" as="additional" />
+                    <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                        <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">
+                        <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                               name="category.product.addto.compare" as="compare"
+                               template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                    </action>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
+
+    <!--<?xml version="1.0"?>-->
+<!--<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"-->
+<!--      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">-->
+<!--<update handle="catalog_category_view_type_layered"/>-->
+<!--<body>-->
+<!--    <attribute name="class" value="page-products"/>-->
+<!--    <attribute name="class" value="catalog-category-view"/>-->
+<!--    <referenceBlock name="page.main.title">-->
+<!--        <arguments>-->
+<!--            <argument name="id" xsi:type="string">page-title-heading</argument>-->
+<!--            <argument name="add_base_attribute_aria" xsi:type="string">page-title-heading toolbar-amount</argument>-->
+<!--        </arguments>-->
+<!--        <block class="Wheelpros\YMMCheck\Block\Product/ProductCount" name="page.main.title.amount"-->
+<!--               template="Magento_Catalog::product/list/toolbar/title-amount.phtml" />-->
+<!--    </referenceBlock>-->
+<!--    <referenceContainer name="content">-->
+<!--        <block class="Wheelpros\YMMCheck\Block\Blowouts\View" name="category.products" template="Wheelpros_YMMCheck::blowouts/products.phtml">-->
+<!--            <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="ymm_product_list" template="Magento_Catalog::product/list.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>-->
+<!--                    <argument name="statusModel" xsi:type="object">Wheelpros\YMMCheck\ViewModel\NewTabStatus</argument>-->
+<!--                </arguments>-->
+<!--                <container name="category.product.list.additional" as="additional" />-->
+<!--                <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">-->
+<!--                    <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>-->
+<!--                </block>-->
+<!--                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">-->
+<!--                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"-->
+<!--                           name="category.product.addto.compare" as="compare"-->
+<!--                           template="Magento_Catalog::product/list/addto/compare.phtml"/>-->
+<!--                </block>-->
+<!--                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">-->
+<!--                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>-->
+<!--                </block>-->
+<!--                <action method="setToolbarBlockName">-->
+<!--                    <argument name="name" xsi:type="string">product_list_toolbar</argument>-->
+<!--                </action>-->
+<!--            </block>-->
+<!--        </block>-->
+<!--    </referenceContainer>-->
+<!--</body>-->
+<!--</page>-->
